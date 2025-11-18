@@ -179,7 +179,7 @@ const AuthPage = () => {
                       <motion.button
                         whileHover={{ scale: 1.02 }}
                         whileTap={{ scale: 0.98 }}
-                        className="w-full py-3 px-6 bg-gradient-to-r from-blue-500 to-blue-600 text-white rounded-full font-semibold shadow-lg hover:shadow-xl transition-all duration-300"
+                        className="w-full py-3 px-6  text-white rounded-full font-semibold shadow-lg hover:shadow-xl transition-all duration-300"
                       >
                         {isLogin ? "LOGIN" : "SIGN UP"}
                       </motion.button>
