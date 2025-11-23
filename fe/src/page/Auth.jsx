@@ -2,15 +2,21 @@ import React, { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { Form } from "radix-ui";
 import VantaBg from "../components/VantaBg";
+import { useLoginMutation, useRegisterMutation } from "../api/auth/mutation";
 
 const AuthPage = () => {
   const [isLogin, setIsLogin] = useState(true);
-
+  const { mutate: loginMutate } = useLoginMutation();
+  const { mutate: registerMutate } = useRegisterMutation();
   const handleSubmit = (e) => {
     e.preventDefault();
     const formData = new FormData(e.target);
     const data = Object.fromEntries(formData);
-    console.log(isLogin ? "Login:" : "Register:", data);
+    if (isLogin) {
+      loginMutate(data);
+    } else {
+      registerMutate(data);
+    }
   };
 
   return (
@@ -179,7 +185,7 @@ const AuthPage = () => {
                       <motion.button
                         whileHover={{ scale: 1.02 }}
                         whileTap={{ scale: 0.98 }}
-                        className="w-full py-3 px-6  text-white rounded-full font-semibold shadow-lg hover:shadow-xl transition-all duration-300"
+                        className="w-full py-3 px-6 bg-linear-to-r from-blue-500 to-blue-800 text-white rounded-full font-semibold shadow-lg hover:shadow-xl transition-all duration-300"
                       >
                         {isLogin ? "LOGIN" : "SIGN UP"}
                       </motion.button>
